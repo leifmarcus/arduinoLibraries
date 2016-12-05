@@ -26,8 +26,8 @@ Motors::Motors( int left[ 4 ], int right[ 4 ] )
     rightMotor( SPR, right[ 0 ], right[ 2 ], right[ 1 ], right[ 3 ] ),
     leftMotor( SPR, left[ 0 ], left[ 2 ], left[ 1 ], left[ 3 ] )
 {
-    currentDirection = 0;
     _setDefaultSpeed();
+    setStartDirection( 0 );
 }
 /*
  *  private set Speed
@@ -47,8 +47,6 @@ void Motors::turn( float degree )
     double steps = perimeter / 360 * abs( degree ) * SPMM;
 
     int step = 1;
-
-    Serial.println( currentDirection );
 
     if ( degree < 0 ) {
         step = -1;
@@ -79,17 +77,16 @@ void Motors::forwards( int mm = 100 )
 {
     double steps = mm * SPMM;
 
-
-    Serial.print( "mm: " );
-    Serial.println( mm );
-    Serial.print( "steps: " );
-    Serial.println( steps );
-
     for ( int i = 1; i <= (int)steps; i++ )
     {
         rightMotor.step( 1 );
         leftMotor.step( -1 );
     }
+}
+
+void Motors::setStartDirection( int direction )
+{
+    currentDirection = 0;
 }
 
 void Motors::backwards()

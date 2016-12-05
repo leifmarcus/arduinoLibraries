@@ -12,6 +12,7 @@ class Motors
         void backwards();
         void turn( float degree );
         void turnTo( float degree );
+        void setStartDirection( int direction );
     private:
         Stepper rightMotor;
         Stepper leftMotor;

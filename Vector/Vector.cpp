@@ -30,5 +30,5 @@ double Vector::dot( double vx, double vy )
 
 double Vector::direction()
 {
-    return atan2( y ,x ) * 180 / PI;
+    return atan2( y, x ) * 180 / PI;
 }
